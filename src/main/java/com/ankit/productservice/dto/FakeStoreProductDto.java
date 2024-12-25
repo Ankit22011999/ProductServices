@@ -16,21 +16,17 @@ public class FakeStoreProductDto {
     private int id;
 
     public Product toProduct(){
-//        System.out.println("hlwllifsjkdhfjkasd");
         Product product = new Product();
         product.setTitle(title);
         product.setPrice(price);
         product.setDescription(description);
         product.setId(id);
-
-        if (rating != null) {
-            Rating newRating = new Rating();
-            newRating.setRate(rating.getRate());
-            newRating.setCount(rating.getCount());
-            product.setRating(newRating);
-        }
-
         product.setImageUrl(image);
+
+        Rating newRating = new Rating();
+        newRating.setRate(rating.getRate());
+        newRating.setCount(rating.getCount());
+        product.setRating(newRating);
 
         return product;
     }

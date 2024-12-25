@@ -1,5 +1,5 @@
 package com.ankit.productservice.model;
-//import com.ankit.productservice.model.Category;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,19 +14,23 @@ public class Product {
     private String title;
     private String description;
     private double price;
-    private Category category;
+    private Rating rating;
     private String imageUrl;
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setRate(int rate) {
+        this.rating.rate = rate;
     }
-    public void setDescription(String description) {
-        this.description = description;
+
+    public void setCount(int count) {
+        this.rating.count = count;
     }
-    public void setPrice(double price) {
-        this.price = price;
+
+    public int getRate() {
+        return rating != null ? rating.getRate() : 0; // Return 0 if rating is null
     }
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+
+    public int getCount() {
+        return rating != null ? rating.getCount() : 0; // Return 0 if rating is null
     }
+
 }

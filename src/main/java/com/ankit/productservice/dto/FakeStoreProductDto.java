@@ -1,7 +1,7 @@
 package com.ankit.productservice.dto;
 
-import com.ankit.productservice.model.Category;
 import com.ankit.productservice.model.Product;
+import com.ankit.productservice.model.Rating;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,17 +11,25 @@ public class FakeStoreProductDto {
     private String title;
     private String description;
     private String image;
-    private String category;
+    private Rating rating;
     private double price;
+    private int id;
 
     public Product toProduct(){
-        System.out.println("hlwllifsjkdhfjkasd");
+//        System.out.println("hlwllifsjkdhfjkasd");
         Product product = new Product();
         product.setTitle(title);
         product.setPrice(price);
         product.setDescription(description);
-        Category category1 = new Category();
-        category1.setTitle(category);
+        product.setId(id);
+
+        if (rating != null) {
+            Rating newRating = new Rating();
+            newRating.setRate(rating.getRate());
+            newRating.setCount(rating.getCount());
+            product.setRating(newRating);
+        }
+
         product.setImageUrl(image);
 
         return product;

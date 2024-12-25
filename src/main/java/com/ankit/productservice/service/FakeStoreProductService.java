@@ -5,6 +5,7 @@ import com.ankit.productservice.model.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -18,11 +19,19 @@ public class FakeStoreProductService implements ProductService{
         this.restTemplate = restTemplate;
     }
     public List<Product> getAllProducts() {
-      FakeStoreProductDto[] fakeStoreProductDto=  restTemplate.getForObject("https://fakestoreapi.com/products", FakeStoreProductDto[].class);
-      System.out.println(fakeStoreProductDto);
-        return Arrays.stream(fakeStoreProductDto)
-                .map(FakeStoreProductDto::toProduct)
-                .collect(Collectors.toList());
+        FakeStoreProductDto[] fakeStoreProductDtoArray =  restTemplate.getForObject("https://fakestoreapi.com/products", FakeStoreProductDto[].class);
+//      clasSystem.out.println(fakeStoreProductDto);
+
+        List<Product> products = new ArrayList<>();
+        for(FakeStoreProductDto fakeStoreProductDto : fakeStoreProductDtoArray){
+            products.add(fakeStoreProductDto.toProduct());
+        }
+
+        return products;
+
+//        return Arrays.stream(fakeStoreProductDto)
+//                .map(FakeStoreProductDto::toProduct)
+//                .collect(Collectors.toList());
     }
     public Product getSingleProduct(long id) {
         FakeStoreProductDto fakeStoreProductDto =restTemplate.getForObject("https://fakestoreapi.com/products/"+id, FakeStoreProductDto.class);

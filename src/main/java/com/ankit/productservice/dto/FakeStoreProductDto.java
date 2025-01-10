@@ -13,6 +13,7 @@ public class FakeStoreProductDto {
     private String image;
     private Rating rating;
     private double price;
+    private String Category;
     private int id;
 
     public Product toProduct(){
@@ -21,12 +22,14 @@ public class FakeStoreProductDto {
         product.setPrice(price);
         product.setDescription(description);
         product.setId(id);
+        product.setCategory(Category);
         product.setImageUrl(image);
+
 
         Rating newRating = new Rating();
         newRating.setRate(rating.getRate());
         newRating.setCount(rating.getCount());
-        product.setRating(newRating);
+//        product.setRating(newRating);
 
         return product;
     }
